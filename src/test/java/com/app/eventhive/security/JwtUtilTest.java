@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class JwtUtilTest {
 
     private JwtUtil jwtUtil;
-    private final String base64Secret = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+    private final String base64Secret = Base64.getEncoder().encodeToString(
+            "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"
+                    .getBytes(StandardCharsets.UTF_8)
+    );
 
     @BeforeEach
     void setUp() {
